@@ -22,11 +22,11 @@ Repo for "<a href="https://arxiv.org/abs/2410.18603" target="_blank">AgentStore:
 AgentStore is a flexible and scalable platform for dynamically integrating various heterogeneous agents to independently or collaboratively automate OS tasks. It allows users to quickly integrate their own specialized agents into the platform, similar to the functionality of the App store. This scalable integration allows the framework to dynamically adapt itself to the evolving OS, providing the multi-dimensional capabilities needed for open-ended tasks.
 
 ## 💾 Installation
-### VMware/VirtualBox (Desktop, Laptop, Bare Metal Machine)
-Suppose you are operating on a system that has not been virtualized (e.g. your desktop, laptop, bare metal machine), meaning you are not utilizing a virtualized environment like AWS, Azure, or k8s.
-If this is the case, proceed with the instructions below. However, if you are on a virtualized platform, please refer to the [virtualized platform](https://github.com/xlang-ai/OSWorld?tab=readme-ov-file#virtualized-platform) section.
 
-1. First, clone this repository and `cd` into it. Then, install the dependencies listed in `requirements.txt`. It is recommended that you use the latest version of Conda to manage the environment, but you can also choose to manually install the dependencies. Please ensure that the version of Python is >= 3.9.
+###  Preparing the OSworld Environment
+Agents in AgentStore operate within the OSworld environment; thus, a complete setup of the OSworld is required. For detailed setup instructions, please refer to the [OSworld](#https://github.com/xlang-ai/OSWorld) documentation. We provide a quick step-by-step installation guide for setting up the necessary environment.
+
+1. First, clone this repository and `cd` into it. Then, install the dependencies listed in `requirements.txt`. 
 ```bash
 # Clone the OSWorld repository
 git clone https://github.com/xlang-ai/OSWorld
@@ -42,21 +42,16 @@ cd OSWorld
 pip install -r requirements.txt
 ```
 
-Alternatively, you can install the environment without any benchmark tasks:
-```bash
-pip install desktop-env
-```
-
 2. Install [VMware Workstation Pro](https://www.vmware.com/products/workstation-pro/workstation-pro-evaluation.html) (for systems with Apple Chips, you should install [VMware Fusion](https://support.broadcom.com/group/ecx/productdownloads?subfamily=VMware+Fusion)) and configure the `vmrun` command.  The installation process can refer to [How to install VMware Worksation Pro](desktop_env/providers/vmware/INSTALL_VMWARE.md). Verify the successful installation by running the following:
 ```bash
 vmrun -T ws list
 ```
 If the installation along with the environment variable set is successful, you will see the message showing the current running virtual machines.
-> **Note:** We also support using [VirtualBox](https://www.virtualbox.org/) if you have issues with VMware Pro. However, features such as parallelism and macOS on Apple chips might not be well-supported.
 
-All set! Our setup script will automatically download the necessary virtual machines and configure the environment for you.
+All set! The setup script will automatically download the necessary virtual machines and configure the environment for you.
 
-## ⚡️ Quickstart
+### Install AgentStore
+
 
 1. **Clone the GitHub Repository:**
 
@@ -80,9 +75,12 @@ All set! Our setup script will automatically download the necessary virtual mach
    cp .env_template .env
    ```
 
-4. **Now you are ready to have fun:**
+### ⚡️ Quickstart 
+
+1. **Run agents in AgentStore:**
+   
    ```
-   python quick_start.py
+   python quick_start.py --agent_name ""
    ```
 
 ### Others
