@@ -1,11 +1,11 @@
 import re
 import json
 import os
-from oscopilot.utils.llms import OpenAI,LLAMA
-# from oscopilot.environments.py_env import PythonEnv
-# from oscopilot.environments.py_jupyter_env import PythonJupyterEnv
-from oscopilot.environments import Env
-from oscopilot.utils import get_os_version
+from agentstore.utils.llms import OpenAI,LLAMA
+# from agentstore.environments.py_env import PythonEnv
+# from agentstore.environments.py_jupyter_env import PythonJupyterEnv
+from agentstore.environments import Env
+from agentstore.utils import get_os_version
 from dotenv import load_dotenv
 
 load_dotenv(override=True)

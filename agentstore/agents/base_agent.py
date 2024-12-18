@@ -1,6 +1,6 @@
 import re
 import json
-from oscopilot.utils import get_os_version
+from agentstore.utils import get_os_version
 
 
 class BaseAgent:

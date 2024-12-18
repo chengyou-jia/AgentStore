@@ -12,8 +12,8 @@ import re
 import tiktoken
 import random
 from datasets import load_dataset
-from oscopilot.prompts.general_pt import prompt as general_pt
-from oscopilot.utils.llms import OpenAI
+from agentstore.prompts.general_pt import prompt as general_pt
+from agentstore.utils.llms import OpenAI
 import platform
 from functools import wraps
 

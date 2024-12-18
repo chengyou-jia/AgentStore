@@ -1,5 +1,5 @@
-from oscopilot.utils import setup_config, setup_pre_run
-from oscopilot.modules.base_module import BaseModule
+from agentstore.utils import setup_config, setup_pre_run
+from agentstore.modules.base_module import BaseModule
 import re
 import os
 import json
@@ -10,7 +10,7 @@ from rich.markdown import Markdown
 
 from desktop_env.desktop_env import DesktopEnv
 
-from oscopilot.prompts.osworld_pt import prompt_image
+from agentstore.prompts.osworld_pt import prompt_image
 
 console = Console()
 

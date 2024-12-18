@@ -5,17 +5,13 @@ AgentStore: Scalable Integration of Heterogeneous Agents As Specialized Generali
 <p align="center">
   <a href="https://chengyou-jia.github.io/AgentStore-Home/"><b>[🌐 Website]</b></a> •
   <a href="https://arxiv.org/abs/2410.18603"><b>[📜 Paper]</b></a> •
-  <a href="#"><b>[🤗 HF Models]</b></a> •  
+  <a href="https://huggingface.co/ChengyouJia/AgentToken-8B"><b>[🤗 HF Models]</b></a> •  
 </p>
 
 <p align="center">
 Repo for "<a href="https://arxiv.org/abs/2410.18603" target="_blank">AgentStore: Scalable Integration of Heterogeneous Agents As Specialized Generalist Computer Assistant</a>"
 </p>
 
-
-## 🔥 News
-
-- _2024.10_: 🎉 We release the initial code of AgentStore; due to the CVPR deadline, more refined code will be rapidly organized and released shortly after.
 
 ## What is AgentStore
 
@@ -77,14 +73,12 @@ All set! The setup script will automatically download the necessary virtual mach
 
 ### ⚡️ Quickstart 
 
-1. **Run agents in AgentStore:**
+1. **Run agents in AgentStore:** (See quick_start.py for more specific configuration )
    
    ```
-   python quick_start.py --agent_name ""
+   python quick_start.py --agent_name "ChromeAgent"
    ```
 
-### Others
-We are working on supporting more 👷. Please hold tight!
 
 ## Citation
 If you find it helpful, please kindly cite the paper.

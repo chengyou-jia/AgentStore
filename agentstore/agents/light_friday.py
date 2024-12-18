@@ -1,5 +1,5 @@
-from oscopilot.utils import setup_config, setup_pre_run
-from oscopilot.modules.base_module import BaseModule
+from agentstore.utils import setup_config, setup_pre_run
+from agentstore.modules.base_module import BaseModule
 import re
 from rich.console import Console
 from rich.markdown import Markdown

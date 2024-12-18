@@ -1,19 +1,19 @@
-from oscopilot.agents.base_agent import BaseAgent
-from oscopilot.utils import check_os_version
-from oscopilot.utils import setup_config, setup_pre_run
+from agentstore.agents.base_agent import BaseAgent
+from agentstore.utils import check_os_version
+from agentstore.utils import setup_config, setup_pre_run
 import json
 import logging
 import os
 import sys
-from oscopilot.prompts.osworld_pt import prompt
-from oscopilot.utils import TaskStatusCode, InnerMonologue, ExecutionState, JudgementResult, RepairingResult
+from agentstore.prompts.osworld_pt import prompt
+from agentstore.utils import TaskStatusCode, InnerMonologue, ExecutionState, JudgementResult, RepairingResult
 
-from oscopilot.utils.osworld_parse import parse_actions_from_string,parse_code_from_string,parse_code_from_som_string
+from agentstore.utils.osworld_parse import parse_actions_from_string,parse_code_from_string,parse_code_from_som_string
 
-from oscopilot.utils.llms import OpenAI,LLAMA
+from agentstore.utils.llms import OpenAI,LLAMA
 from dotenv import load_dotenv
 
-from oscopilot.utils.parse_obs import parse_obs
+from agentstore.utils.parse_obs import parse_obs
 
 import contextlib
 from desktop_env.desktop_env import DesktopEnv

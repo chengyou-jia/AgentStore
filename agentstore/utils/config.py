@@ -1,7 +1,7 @@
 import os
 import argparse
 import logging
-from oscopilot.utils.utils import random_string, get_project_root_path
+from agentstore.utils.utils import random_string, get_project_root_path
 import dotenv
 import sys
 
