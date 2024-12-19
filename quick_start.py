@@ -10,34 +10,35 @@ from tqdm import tqdm
 from desktop_env.desktop_env import DesktopEnv
 
 # agents
-from agentstore import ChromeGUIAgent
-from agentstore import WordAgent,PptxAgent,ExcelAgent
-from agentstore import ImageAgent,OSAgent,VScodeAgent
+from agentstore import WordAgent, PptxAgent, ExcelAgent
+from agentstore import ImageAgent, OSAgent, VScodeAgent
+from agentstore.agents.gui_agent import ChromeAgent, GimpAgent, VlcAgent, ThunderbirdAgent, VscodeAgent, OsGUIAgent, CalcAgent, ImpressAgent, WriterAgent
 # to be updated more
 
-
-
 agent_dict = {
-    "ChromeAgent": ChromeGUIAgent,
-
-    "SlideAgent":PptxAgent,
-    "SheetAgent": ExcelAgent,
+    "ChromeAgent": ChromeAgent,
     "WordAgent": WordAgent,
-
+    "SlideAgent": PptxAgent,
+    "SheetAgent": ExcelAgent,
     "ImageAgent": ImageAgent,
     "VSAgent": VScodeAgent,
-    "OSAgent": OSAgent,
-    "OSAgent": OSAgent,
-    "OSAgent": OSAgent,
-    # Add more agents here
+    "Friday": OSAgent,
+    "GimpAgent": GimpAgent,
+    "VLCAgent": VlcAgent,
+    "MailAgent": ThunderbirdAgent,
+    "VSGUIAgent": VscodeAgent,
+    "OSAgent": OsGUIAgent,
+    "CalcAgent": CalcAgent,
+    "ImPressAgent": ImpressAgent,
+    "WriterAgent" : WriterAgent,
 }
 
-def replace_path(obj,old_path,new_path):
+def replace_path(obj, old_path, new_path):
     if isinstance(obj, dict):
         for key, value in obj.items():
-            obj[key] = replace_path(value,old_path,new_path)
+            obj[key] = replace_path(value, old_path, new_path)
     elif isinstance(obj, list):
-        obj = [replace_path(item,old_path,new_path) for item in obj]
+        obj = [replace_path(item, old_path, new_path) for item in obj]
     elif isinstance(obj, str):
         obj = obj.replace(old_path, new_path)
     return obj
@@ -59,7 +60,6 @@ def config() -> argparse.Namespace:
     parser.add_argument("--osworld_path", type=str, default='./OSworld/')
     parser.add_argument("--domain", type=str, default='chrome')
     parser.add_argument("--example_id", type=str, default='bb5e4c0d-f964-439c-97b6-bdb9747de3f4')
-    
 
     # OSworld environment config
     parser.add_argument("--path_to_vm", type=str, default=None)
@@ -105,14 +105,13 @@ def initialize_agent(agent_name, *args, **kwargs):
     AgentClass = agent_dict[agent_name]
     return AgentClass(*args, **kwargs)
 
-
 def main():
     args = config()
     environment = DesktopEnv(
-            path_to_vm=args.path_to_vm,
-            action_space=args.action_space,
-            require_a11y_tree=True,
-        )
+        path_to_vm=args.path_to_vm,
+        action_space=args.action_space,
+        require_a11y_tree=True,
+    )
 
     # test_all_meta_path = "D:\\jcy\\OSWorld_new\\evaluation_examples/test_all.json"
     # example_path = "D:\\jcy\\OSWorld\\evaluation_examples"
@@ -135,34 +134,34 @@ def main():
     with open(config_file, "r", encoding="utf-8") as f:
         example = json.load(f)
     task_name = example['instruction']
-    
+
     print('task_name:', task_name)
     setting_path = os.path.join(osworld_path, f"evaluation_examples/settings")
     example = replace_path(example, 'evaluation_examples/settings', setting_path)
-    
+
     previous_obs = environment.reset(task_config=example)
 
-    action_space = args.action_space 
+    action_space = args.action_space
     observation_type = args.observation_type
     max_trajectory_length = args.max_trajectory_length
     max_steps = args.max_steps
 
     if args.agent_type == 'gui':
         agent = initialize_agent(
-        args.agent_name,
-        args,
-        example,
-        environment,
-        action_space,
-        observation_type,
-        max_trajectory_length,
-        max_steps=max_steps
+            args.agent_name,
+            args,
+            example,
+            environment,
+            action_space,
+            observation_type,
+            max_trajectory_length,
+            max_steps=max_steps
         )
     elif args.agent_type == 'cli':
-        agent = initialize_agent(args.agent_name, args, example, environment,obs=previous_obs)
+        agent = initialize_agent(args.agent_name, args, example, environment, obs=previous_obs)
     else:
         raise ValueError(f"Agent Type '{args.agent_type}' is not recognized.")
-    
+
     agent.run()
     print("evaluate.......")
     print(environment.evaluate())
